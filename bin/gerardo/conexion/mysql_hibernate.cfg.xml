@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+ "-//Hibernate/Hibernate Configuration DTD 3.0//EN"
+ "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+	<session-factory>
+
+		<!-- Configuración de conexión a la base de datos -->
+
+		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="connection.url">jdbc:mysql://localhost/BibliotecaHibernate</property>
+		<property name="connection.username">root</property>
+		<property name="connection.password"></property>
+
+		<!-- Pool de conexiones JDBC (se usa la que viene por defecto) -->
+
+		<property name="connection.pool_size">10</property>
+
+		<!-- Dialecto SQL -->
+
+		<property name="dialect">org.hibernate.dialect.MySQLDialect</property>
+
+		<!-- Muestra en la consola todas las consultas SQL ejecutadas -->
+
+		<property name="show_sql">true</property>
+
+		<!-- Elimina y vuelve a crear el esquema de la base de datos al iniciar 
+			si siempre esta sin comentar cada vez que lo ejecuto crea las tablas para 
+			ello poner create-drop, si no quiero que vuelva a crear las tablas pondré 
+			update -->
+
+		<property name="hbm2ddl.auto">update</property>
+
+		<!-- Mapea las siguientes clases anotadas si trabajásemos con mapeo XML 
+			en lugar de class pondríamos resource -->
+		<mapping class="gerardo.tablas.Autor" />
+		<mapping class="gerardo.tablas.DepositoLegal" />
+		<mapping class="gerardo.tablas.Ejemplar" />
+		<mapping class="gerardo.tablas.Libro" />
+<!-- 		<mapping class="gerardo.tablas.libros_autores" /> -->
+	</session-factory>
+</hibernate-configuration>

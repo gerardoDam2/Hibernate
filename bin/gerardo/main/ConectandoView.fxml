@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="228.0" prefWidth="304.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.60">
+   <children>
+      <ImageView fitHeight="254.0" fitWidth="305.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@c3a90c28921223.55d9570353ff5%20(1).gif" />
+         </image>
+      </ImageView>
+      <Label layoutX="55.0" layoutY="194.0" text="Conectando a la base de datos" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

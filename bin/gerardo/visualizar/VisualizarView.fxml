@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8.0.60" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <HBox alignment="CENTER" spacing="10.0" BorderPane.alignment="CENTER">
+         <opaqueInsets>
+            <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+         </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" left="5.0" right="5.0" top="10.0" />
+         </padding>
+      </HBox>
+   </top>
+   <opaqueInsets>
+      <Insets />
+   </opaqueInsets>
+   <center>
+      <SplitPane dividerPositions="0.5701754385964912" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <items>
+            <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Libros">
+               <content>
+                  <TableView fx:id="tableViewLibros" prefHeight="200.0" prefWidth="200.0">
+                    <columns>
+                      <TableColumn fx:id="codigoLibroCol" prefWidth="75.0" text="código " />
+                      <TableColumn fx:id="nombreLibroCol" prefWidth="110.0" text="nombre" />
+                        <TableColumn fx:id="isbnLibroCol" prefWidth="119.0" text="Isbn" />
+                        <TableColumn fx:id="fechaLibroCol" prefWidth="105.0" text="Fecha " />
+                    </columns>
+                  </TableView>
+               </content>
+               <padding>
+                  <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+               </padding>
+            </TitledPane>
+            <SplitPane dividerPositions="0.26287744227353466, 0.6074600355239786" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+              <items>
+                  <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Deposito">
+                     <content>
+                        <TableView fx:id="depositoTableView" prefHeight="90.0" prefWidth="402.0">
+                          <columns>
+                            <TableColumn fx:id="despositoCol" prefWidth="394.0" text="Depósito legal" />
+                          </columns>
+                        </TableView>
+                     </content>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="173.0" prefWidth="361.0" text="Autores">
+                     <content>
+                        <TableView fx:id="autoresTableView" prefHeight="116.0" prefWidth="399.0">
+                          <columns>
+                            <TableColumn fx:id="codAutorCol" prefWidth="87.0" text="Código" />
+                            <TableColumn fx:id="nombreAutorCol" minWidth="0.0" prefWidth="291.0" text="Nombre" />
+                          </columns>
+                        </TableView>
+                     </content>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TitledPane>
+                  <TitledPane collapsible="false" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Ejemplares">
+                     <content>
+                        <TableView fx:id="ejemplaresTableView" prefHeight="206.0" prefWidth="397.0">
+                          <columns>
+                            <TableColumn fx:id="codEjemplarCol" prefWidth="127.0" text="Código" />
+                            <TableColumn fx:id="importeEjemplarCol" prefWidth="123.0" text="Importe" />
+                              <TableColumn fx:id="monedaEjemplarCol" prefWidth="128.0" text="Moneda" />
+                          </columns>
+                        </TableView>
+                     </content>
+                     <padding>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                     </padding>
+                  </TitledPane>
+              </items>
+            </SplitPane>
+         </items>
+      </SplitPane>
+   </center>
+   <bottom>
+      <HBox spacing="10.0" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="nuevoButton" mnemonicParsing="false" onAction="#onNuevoAction" text="nuevo" />
+            <Button fx:id="modificarButton" mnemonicParsing="false" onAction="#onModificarAction" text="modificar" />
+            <Button fx:id="eliminarButton" mnemonicParsing="false" onAction="#onEliminarAction" text="eliminar" />
+            <ImageView fx:id="updateImage" fitHeight="45.0" fitWidth="45.0" onMouseClicked="#onUpdateAction" pickOnBounds="true" preserveRatio="true" styleClass="update">
+               <image>
+                  <Image url="@update.png" />
+               </image>
+            </ImageView>
+         </children>
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets bottom="5.0" />
+         </BorderPane.margin>
+      </HBox>
+   </bottom>
+</BorderPane>
