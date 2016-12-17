@@ -143,7 +143,7 @@ public class AddController implements Initializable {
 
 
 	private void comprobarDepositoLegal(String newValue) {
-		if (newValue.trim().length()==0) 
+		if (newValue.length()<=20) 
 			checkDepositoLegal.set(false);
 		else
 			checkDepositoLegal.set(true);
