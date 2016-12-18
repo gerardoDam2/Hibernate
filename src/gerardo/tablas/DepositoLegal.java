@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
@@ -25,7 +26,9 @@ public class DepositoLegal implements Serializable {
 	@Id
 	@GeneratedValue(generator = "myForeign")
 	@GenericGenerator( name = "myForeign", strategy = "foreign ", parameters = {@org.hibernate.annotations.Parameter(name = "property", value = "libro")}) 
-	@OneToOne(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+	@OneToOne
+	(cascade={CascadeType.PERSIST,CascadeType.REMOVE})
+//	  @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
 	@JoinColumn(name = "codLibroDeposito")
 	private Libro libro;
 

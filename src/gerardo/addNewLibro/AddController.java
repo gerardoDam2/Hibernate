@@ -138,16 +138,18 @@ public class AddController implements Initializable {
 		isbnTextField.idProperty().bind(new When(checkIsbn).then("correcto").otherwise("error"));
 		depositoLegalTextField.idProperty().bind(new When(checkDepositoLegal).then("correcto").otherwise("error"));
 		
+		depositoLegalTextField.textProperty().set(" ");
+		depositoLegalTextField.clear();
+		
 	}
 	
 
 
 	private void comprobarDepositoLegal(String newValue) {
 		if (newValue.length()<=20) 
-			checkDepositoLegal.set(false);
-		else
 			checkDepositoLegal.set(true);
-		System.out.println(checkDepositoLegal.get()+""+checkIsbn.get()+checkNombre.get()+"");
+		else
+			checkDepositoLegal.set(false);
 	}
 
 	private void comprobarIsbn(String newValue) {
@@ -187,29 +189,36 @@ public class AddController implements Initializable {
 
 	@FXML
 	void onGuardarAction(ActionEvent event) {
+
 		libro.setNombreLibro(nombreTextField.getText());
 		libro.setISBN(isbnTextField.getText());
 		libro.setFechaintro(Date.valueOf(fechaDatePicker.getValue()));
-		if (!(depositoLegalTextField.getText().trim().length()==0)) {
+		if (depositoLegalTextField.getText().trim().length()!=0) {
 			DepositoLegal depositoLegal = new DepositoLegal();
 			depositoLegal.setLibro(libro);
 			depositoLegal.setDepositolegal(depositoLegalTextField.getText());
 			libro.setDepositoLegal(depositoLegal);
+		}else if(libro.getDepositoLegal()!=null){
+			Session session2 = sesionFactory.openSession();
+			session2.beginTransaction();
+			session2.delete(libro.getDepositoLegal());
+			session2.getTransaction().commit();
+			libro.setDepositoLegal(null);
 		}
+		
 	
 		libro.getAutores().clear();
 		libro.getAutores().addAll(selectedList);
 		Session session = sesionFactory.openSession();
-		session.getTransaction().begin();
+		session.beginTransaction();
 		session.saveOrUpdate(libro);
 		session.getTransaction().commit();
+		session.close();
 		onCancelarAction(event);
 		if (puntero!=-1) {
 			visualizarController.target(puntero);
 			puntero=-1;
 		}
-
-		
 	}
 
 	@FXML

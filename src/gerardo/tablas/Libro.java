@@ -1,5 +1,4 @@
 package gerardo.tablas;
-
 import java.io.Serializable;
 import java.sql.Date;
 import java.util.ArrayList;
@@ -24,7 +23,6 @@ import javax.persistence.Table;
 import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.CascadeType;
 
-
 @Entity
 @Table(name="libros")
 public class Libro implements Serializable {
@@ -41,7 +39,6 @@ public class Libro implements Serializable {
 	
 	private Date fechaintro;
 	
-	
 	@ManyToMany( fetch = FetchType.EAGER)
 	@JoinTable(name="librosautores",joinColumns={@JoinColumn (name="codLibro")}
 	,inverseJoinColumns={@JoinColumn (name="codAutor")})
@@ -52,18 +49,19 @@ public class Libro implements Serializable {
 	@OneToMany(cascade = javax.persistence.CascadeType.ALL, fetch = FetchType.EAGER,mappedBy="libro") 
 	private List<Ejemplar> ejemplares = new ArrayList<>();
 	
-	@OneToOne(cascade={javax.persistence.CascadeType.ALL})
+//	@OneToOne(cascade={javax.persistence.CascadeType.ALL})
+	@OneToOne
 	@PrimaryKeyJoinColumn
+//	@Cascade({CascadeType.DELETE,CascadeType.SAVE_UPDATE})
+	@Cascade({CascadeType.ALL})
 	private DepositoLegal depositoLegal;
 	
 	public Libro (){
 	}
 
-
 	public int getCodLibro() {
 		return codLibro;
 	}
-
 
 	public void setCodLibro(int codLibro) {
 		this.codLibro = codLibro;
@@ -99,10 +97,6 @@ public class Libro implements Serializable {
 		this.fechaintro = fechaintro;
 	}
 
-
-
-	
-
 	public Set<Autor> getAutores() {
 		return autores;
 	}
@@ -127,12 +121,7 @@ public class Libro implements Serializable {
 		return depositoLegal;
 	}
 
-
 	public void setDepositoLegal(DepositoLegal depositoLegal) {
 		this.depositoLegal = depositoLegal;
 	}
-
-	
-	
-	
 }
